@@ -27,13 +27,16 @@ jobs:
         env:
           HF_TOKEN: ${{ secrets.HF_TOKEN }}
         run: |
-          python -c "from huggingface_hub import login; login('${HF_TOKEN}')"
+          python -c "from huggingface_hub import login; import os; login(token=os.environ['HF_TOKEN'])"
 
       - name: Train model and register to Hugging Face
+        env:
+          HF_TOKEN: ${{ secrets.HF_TOKEN }}
         run: |
           python src/train_and_register.py
 
       - name: Deploy Streamlit app to Hugging Face Space
+        env:
+          HF_TOKEN: ${{ secrets.HF_TOKEN }}
         run: |
           python src/deploy_space.py
-

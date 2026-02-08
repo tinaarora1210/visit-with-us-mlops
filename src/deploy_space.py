@@ -32,7 +32,7 @@ def main():
         repo_id=space_repo_id,
         repo_type="space",
         exist_ok=True,
-        space_sdk="streamlit",
+        space_sdk="docker",
         token=hf_token
     )
 
